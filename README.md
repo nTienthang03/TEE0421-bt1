@@ -1,4 +1,4 @@
-# TEE0421-bt1
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/3983bab7-acce-4bda-9752-69591bbd189b" /># TEE0421-bt1
 # Thông Tin Sinh Viên
 
 - **Họ và tên:** Nguyễn Tiến Thắng  
@@ -286,6 +286,177 @@ sudo ufw enable
 ```
 
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/66fbcf23-abb5-4720-991a-7629a9b2e5b1" />
+
+# C  Docker Compose Project - MyApp
+
+## 📌 Giới thiệu
+
+Dự án này sử dụng **Docker Compose** để triển khai 2 dịch vụ chính:
+
+* 🌐 **Nginx**: Web server (port 80)
+* 🔴 **Node-RED**: Xử lý backend (port 1880)
+
+---
+
+## 📁 Cấu trúc thư mục
+
+```
+myapp/
+│── docker-compose.yml
+│
+├── myweb/
+│   └── index.html
+│
+├── nginx/
+│   └── nginx.conf
+│
+└── nodered/
+    └── settings.js
+```
+
+---
+
+## ⚙️ Bước 1: Tạo thư mục
+
+```bash
+mkdir -p ~/myapp
+cd ~/myapp
+mkdir myweb nginx nodered
+```
+
+---
+
+## 🌐 Bước 2: Tạo web tĩnh
+
+Tạo file `myweb/index.html`
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Info</title>
+</head>
+<body>
+    <h1>Thông tin cá nhân</h1>
+    <p>Họ tên: Nguyễn Tiến Thắng</p>
+    <p>Ngày sinh: 09/02/2003</p>
+    <p>Sinh viên DevOps</p>
+</body>
+</html>
+```
+
+---
+
+## 🐳 Bước 3: docker-compose.yml
+
+```yaml
+version: '3.8'
+
+services:
+  nodered:
+    image: nodered/node-red
+    ports:
+      - "1880:1880"
+    volumes:
+      - ./nodered:/data
+
+  nginx:
+    image: nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./myweb:/myweb
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - nodered
+```
+
+---
+![Uploading image.png…]()
+
+## ⚡ Bước 4: Cấu hình Nginx
+
+Tạo file `nginx/nginx.conf`
+
+```nginx
+events {}
+
+http {
+    server {
+        listen 80;
+        server_name myapp.local;
+
+        location / {
+            root /myweb;
+            index index.html;
+        }
+
+        location /api/ {
+            proxy_pass http://nodered:1880/;
+        }
+    }
+}
+```
+
+---
+
+## 🔐 Bước 5: Bật đăng nhập Node-RED
+
+Chạy lần đầu để tạo file cấu hình:
+
+```bash
+docker-compose up -d
+```
+
+Sau đó sửa file `nodered/settings.js`
+
+Tìm phần `adminAuth` và sửa:
+
+```js
+adminAuth: {
+    type: "credentials",
+    users: [{
+        username: "admin",
+        password: "$2b$08$xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        permissions: "*"
+    }]
+},
+```
+
+👉 Tạo password hash bằng:
+
+```bash
+docker exec -it <container_id> node-red admin hash-pw
+```
+
+---
+
+## ▶️ Bước 6: Chạy hệ thống
+
+```bash
+docker-compose up -d
+```
+
+---
+
+## 🌍 Truy cập
+
+* Web: [http://localhost](http://localhost)
+* Node-RED: [http://localhost:1880](http://localhost:1880)
+
+---
+
+## 🧠 Ghi chú
+
+* Có thể chỉnh `server_name` theo domain riêng
+* Nếu lỗi port 80 → dùng port khác (8080)
+* Kiểm tra container:
+
+```bash
+docker ps
+```
+
+---
 
 
 
