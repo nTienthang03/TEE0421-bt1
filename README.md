@@ -221,6 +221,7 @@ sudo usermod -aG docker $USER
 * Logout → Login lại
 
 ---
+
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/fbb6b1d6-a35d-418f-9074-2d5e128ecc14" />
 
 ## 10. Lệnh Docker cơ bản
