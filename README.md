@@ -96,11 +96,12 @@
 ```bash
 ip -4 addr
 ```
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/2e9e0e79-6815-42b4-82af-c2eb03629a49" />
 
 Ví dụ:
 
 ```
-192.168.100.123
+192.168.102.87
 ```
 
 ---
@@ -110,11 +111,12 @@ Ví dụ:
 Mở CMD và chạy:
 
 ```bash
-ssh admin@192.168.100.123
+ssh nguyentienthang@192.168.102.87
 ```
 
 * Nhập password (không hiển thị)
 * Nếu thành công → vào terminal Ubuntu
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/85c14ee4-9d00-4205-b96f-79ea73937b7a" />
 
 ---
 
@@ -125,12 +127,15 @@ ssh admin@192.168.100.123
 ```bash
 ls
 ```
+<img width="1055" height="209" alt="image" src="https://github.com/user-attachments/assets/54e38f55-255b-4f42-9f2f-ffedf29cba68" />
+
 
 ### Tạo thư mục
 
 ```bash
-mkdir nameFolder
+mkdir ThangFolder
 ```
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/1dad2a55-f109-41df-869e-8ac6dc36b30c" />
 
 ### Chuyển thư mục
 
@@ -188,6 +193,7 @@ docker --version
 ```
 
 ---
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/f89b3af1-32c7-4478-8e5b-b07bc09ab89d" />
 
 ## 8. Cài Docker Compose
 
@@ -202,6 +208,7 @@ docker-compose --version
 ```
 
 ---
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/ff6b9039-e86a-425d-8f90-1ac79a3d1865" />
 
 ## 9. Chạy Docker không cần sudo
 
@@ -214,6 +221,7 @@ sudo usermod -aG docker $USER
 * Logout → Login lại
 
 ---
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/fbb6b1d6-a35d-418f-9074-2d5e128ecc14" />
 
 ## 10. Lệnh Docker cơ bản
 
@@ -267,6 +275,7 @@ docker-compose down
 sudo ufw allow 80
 sudo ufw allow 1880
 sudo ufw allow 9630
+sudo ufw enable
 ```
 
 ### Bật firewall
@@ -275,15 +284,9 @@ sudo ufw allow 9630
 sudo ufw enable
 ```
 
----
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/66fbcf23-abb5-4720-991a-7629a9b2e5b1" />
 
-## ✅ Kết quả đạt được
 
-* Cài Ubuntu thành công
-* SSH từ Windows vào Ubuntu
-* Cài Docker & Docker Compose
-* Chạy container thành công
-* Mở các port cần thiết
 
----
+
 
