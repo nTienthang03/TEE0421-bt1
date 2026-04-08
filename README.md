@@ -330,17 +330,54 @@ mkdir myweb nginx nodered
 
 Tạo file `myweb/index.html`
 
-```html
+```
 <!DOCTYPE html>
-<html>
+<html lang="vi">
 <head>
-    <title>My Info</title>
+    <meta charset="UTF-8">
+    <title>My DevOps App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #4facfe, #00f2fe);
+            text-align: center;
+            color: white;
+            margin-top: 100px;
+        }
+        .card {
+            background: rgba(0,0,0,0.5);
+            padding: 30px;
+            border-radius: 15px;
+            display: inline-block;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        a {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: #ff9800;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+        a:hover {
+            background: #e68900;
+        }
+    </style>
 </head>
 <body>
-    <h1>Thông tin cá nhân</h1>
-    <p>Họ tên: Nguyễn Tiến Thắng</p>
-    <p>Ngày sinh: 09/02/2003</p>
-    <p>Sinh viên DevOps</p>
+
+    <div class="card">
+        <h1>🚀 My DevOps Project</h1>
+        <p><b>Họ tên:</b> Nguyễn Tiến Thắng</p>
+        <p><b>Ngày sinh:</b> 09/02/2003</p>
+        <p><b>Ngành:</b> DevOps</p>
+
+        <a href="http://localhost:1880">🔴 Mở Node-RED</a>
+    </div>
+
 </body>
 </html>
 ```
@@ -372,7 +409,7 @@ services:
 ```
 
 ---
-![Uploading image.png…]()
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/a7ad05ef-d6bb-4329-b896-93c29f836761" />
 
 ## ⚡ Bước 4: Cấu hình Nginx
 
@@ -423,13 +460,8 @@ adminAuth: {
 },
 ```
 
-👉 Tạo password hash bằng:
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/253955f9-561a-4562-a4a0-99ae7239c41a" />
 
-```bash
-docker exec -it <container_id> node-red admin hash-pw
-```
-
----
 
 ## ▶️ Bước 6: Chạy hệ thống
 
@@ -442,21 +474,15 @@ docker-compose up -d
 ## 🌍 Truy cập
 
 * Web: [http://localhost](http://localhost)
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/a8509e06-140d-4f82-a9e5-dbc767c56ed3" />
+
 * Node-RED: [http://localhost:1880](http://localhost:1880)
 
----
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/f68e3bac-57df-4e6f-bf2a-632cf209d5f8" />
 
-## 🧠 Ghi chú
 
-* Có thể chỉnh `server_name` theo domain riêng
-* Nếu lỗi port 80 → dùng port khác (8080)
-* Kiểm tra container:
 
-```bash
-docker ps
-```
-
----
 
 
 
