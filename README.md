@@ -3,6 +3,9 @@
 - **Họ và tên:** Nguyễn Tiến Thắng  
 - **Mã sinh viên:** K225480106058
 - **Lớp:**  : K58.KTP
+# Đề bài 
+Bài tập 01:
+https://github.com/duycop/Developing-applications-with-open-source
 # A. Đăng ký tên miền cá nhân
 
 ## 1. Chọn và đăng ký domain
