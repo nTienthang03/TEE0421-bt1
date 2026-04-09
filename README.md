@@ -1093,8 +1093,169 @@ myapp/
 * ✅ Truy cập bằng domain thật
 
 ---
+# ❓ G. Câu hỏi về bài làm
 
+# ❓ G. Câu hỏi về bài làm
 
+---
+
+## 🎯 1. Tại sao dùng Nginx làm Reverse Proxy mà không trỏ thẳng Tunnel vào Node-RED?
+
+Trả lời:
+
+Nginx đóng vai trò gateway trung gian, giúp:
+
+* Gom nhiều service (myapi, nodered, web) về 1 domain
+* Dễ quản lý routing (/api, /, /nodered)
+
+Nếu trỏ thẳng vào Node-RED:
+
+* Chỉ dùng được 1 service
+* Khó mở rộng hệ thống
+
+Kết luận:
+Dùng Nginx để scale + quản lý + tách lớp kiến trúc
+
+---
+
+## 🎯 2. Mount file vs Mount thư mục trong Docker khác nhau gì?
+
+Trả lời:
+
+Mount file:
+
+```bash
+./nginx.conf:/etc/nginx/nginx.conf
+```
+
+Ghi đè 1 file cụ thể
+
+Mount thư mục:
+
+```bash
+./myweb:/usr/share/nginx/html
+```
+
+Ghi đè toàn bộ thư mục
+
+Khác nhau:
+
+| Mount file   | Mount folder             |
+| ------------ | ------------------------ |
+| 1 file       | cả thư mục               |
+| ít ảnh hưởng | có thể overwrite toàn bộ |
+
+---
+
+## 🎯 3. Sửa index.html trên Ubuntu có update web ngay không?
+
+Trả lời:
+
+Có (nếu dùng volume mount)
+vì container đọc trực tiếp từ máy host
+
+Không (nếu build image)
+phải rebuild container
+
+Trong bài này:
+dùng mount → update realtime
+
+---
+
+## 🎯 4. restart: always / unless-stopped để làm gì?
+
+Trả lời:
+
+* always: container luôn restart khi bị stop/crash
+* unless-stopped: restart trừ khi bạn stop thủ công
+
+Mục đích:
+
+* đảm bảo service luôn chạy
+* tăng tính high availability
+
+---
+
+## 🎯 5. Tại sao cho tất cả service dùng chung network?
+
+Trả lời:
+
+Các container có thể gọi nhau bằng tên service:
+
+```bash
+http://myapi:9630
+http://nodered:1880
+```
+
+* Không cần IP
+* Dễ scale & maintain
+
+Lợi ích:
+
+* internal communication
+* bảo mật hơn (không expose port)
+
+---
+
+## 🎯 6. Tại sao phải dùng .env + .gitignore cho Cloudflare Token?
+
+Trả lời:
+
+Token là secret
+
+Nếu push lên GitHub:
+người khác có thể chiếm tunnel
+
+Cách đúng:
+
+* lưu trong `.env`
+* thêm `.env` vào `.gitignore`
+
+Kết luận:
+bảo mật hệ thống
+
+---
+
+## 🎯 7. Tại sao cần thêm hậu tố .conf khi mount Nginx?
+
+Trả lời:
+
+Nginx chỉ load file cấu hình có đuôi `.conf`
+
+Nếu sai tên:
+
+* Nginx không đọc config
+* gây lỗi 404 hoặc default config
+
+Kết luận:
+`.conf` là quy chuẩn bắt buộc
+
+---
+
+## 🎯 8. Dùng Cloudflare Tunnel có cần mở port không?
+
+Trả lời:
+
+KHÔNG cần mở port
+
+Tunnel tạo kết nối outbound từ máy → Cloudflare
+
+Người dùng truy cập:
+
+```
+User → Cloudflare → Tunnel → Container
+```
+
+Lợi ích:
+
+* không cần NAT / port forward
+* an toàn hơn
+
+---
+
+## Học Được từ bài tập
+
+“Hệ thống sử dụng Docker Compose để quản lý service, Nginx làm reverse proxy để điều phối request, và Cloudflare Tunnel giúp public ứng dụng ra Internet mà không cần mở port, đảm bảo bảo mật và dễ mở rộng.”
 
 
 
