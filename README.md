@@ -118,7 +118,8 @@ ssh nguyentienthang@192.168.102.87
 
 * Nhập password (không hiển thị)
 * Nếu thành công → vào terminal Ubuntu
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/85c14ee4-9d00-4205-b96f-79ea73937b7a" />
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/5e86547d-2a8a-4500-951d-68e401beabea" />
+
 
 ---
 
